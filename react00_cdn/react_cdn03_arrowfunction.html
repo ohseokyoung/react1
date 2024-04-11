@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!--CDN으로 react 링크 걸기-->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<!-- CDN으로 babel 링크 걸기 : jsx타입을 감지하여 실시간 반응 -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<body>
+    <script>
+        //화살표 함수
+        function hello(){
+            return "<div>hi...</div>";
+        }
+        var hello1 = function(){
+            return "<div>Hi React 1...</div>";
+        }
+        var hello2 = ()=>{
+            return "<div>hi react 2 ...</div>";
+        }
+        var hello3 = (val)=>{
+            return "<div>hi react 3 ..."+val+"</div>";
+        }
+        var hello4 = ()=> "<div>리턴이 생략됨.</div>";
+
+        var hello5 = txt => "<div>값="+txt+ "</div>";
+
+        document.write(hello());
+        document.write(hello1());
+        document.write(hello2());
+        document.write(hello3("안녕"));
+        document.write(hello4());
+        document.write(hello5(1234));
+    </script>
+    <h1>클래스에 화살표함수 선언</h1>
+    <p>화살표함수를 이용한 이벤트 처리</p>
+    <button id="btn">Click Me!!</button>
+    <p id="view"></p>
+    <script>
+        //클래스 생성
+        class TestColor{
+            //생성자 메소드
+            constructor(color){
+                this.colorName = color;
+            }
+            //메소드=화살표 함수
+            //1. body태그의 배경을 pink로 세팅하는 함수
+            backColorChange = ()=>{ //document.getElementById("")
+                document.getElementsByTagName("body")[0].style.backgroundColor = "pink";
+            }
+            //2. button을 클릭하면 호출될 함수, button색을 빨강으로 바꾸고 view에 텍스트를 누적기능 
+            changeColor = ()=>{
+                document.getElementById("btn").style.backgroundColor = this.colorName;
+                document.getElementById("view").innerHTML += this.colorName+" ";
+            }
+        }
+
+        const tColor = new TestColor("Red");
+        //함수 호출 : body가 로딩이 완료되면 배경을 바꿈(이벤트로 호출)
+        //                                함수명의 ()는 생략한다.
+        window.addEventListener('load', tColor.backColorChange);
+
+        //버튼 클릭이벤트
+        document.getElementById("btn").addEventListener('click', tColor.changeColor);
+    </script>
+</body>
+</html>

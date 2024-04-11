@@ -1,0 +1,237 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://webfontworld.github.io/NanumSquare/NanumSquare.css">
+    <style>
+        body{
+            background-color: #FFFAFD;
+        }
+        #navButtons{
+            display:flex;
+            flex-direction:column;
+            align-items:flex-start;
+            width:150px;
+            border-right:1px solid black;
+        }
+        #navButtons>button{
+            width:100px;
+            height:70px;
+            border:none;
+            background-color:white;
+            margin:20px auto;
+            font-weight:bold;
+            border-radius:20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #navButtons>button:hover {
+            background-color: #00A4EA;
+            color: white;
+        }
+        #scheduleNav{
+            display:flex;
+            /*left: calc(-100% + 50px);*/
+            margin-top:50px;
+        }
+        #content{
+            margin-left:0;
+        }
+        #scheduleContent{
+            display:flex;
+            margin-top:20px;
+            margin-left:30px;
+        }
+        #schedule{
+            margin-bottom:20px;
+        }
+        #day{
+            margin-left:30px;
+            width:330px;
+            border-right:1px solid black;
+        }
+        #scheduleContent>img{
+            width:100px;
+            height:100px;
+            margin-left:30px;
+        }
+        #order{
+            width:25px;
+            border-radius:40px;
+            margin-bottom:10px;
+            background-color:lightblue;
+            font-weight:bold;
+            text-align:center;
+        }
+       #nthDay{
+        font-size:20px;
+        font-weight:bold;
+        margin-bottom:50px;
+       }
+       #location{
+        font-weight:bold;
+        font-size:17px;
+        margin-top:10px;
+       }
+    </style>
+    <script>
+        function clickNav() {
+            var scheduleNav = document.getElementById('scheduleNav');
+            var content = document.getElementById('content');
+    
+            if (scheduleNav.style.left === "0px") {
+                scheduleNav.style.left = "calc(100% + 50px)";
+                content.style.marginLeft = "0";
+            } else {
+                scheduleNav.style.left = "0";
+                content.style.marginLeft = scheduleNav.clientWidth + "px";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <jsp:include page="/layouts/header.jsp" flush="false"/>
+    </header>
+    <main>
+        <article>
+            <div id="scheduleNav">
+                <!--
+                <div id="openSideNav">
+                    <button onclick="clickNav()">☰</button>
+                </div>-->
+                <div id="navButtons">
+                    <button onclick="allday()">전체일정</button>
+                    <button onclick="firstday()">1일차</button>
+                    <button onclick="secondday()">2일차</button>
+                </div>
+                <div id="day">    
+                    <li id="nthDay">1일차</li>
+                    <div id="schedule">  
+                        <li id="order">1</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>11:00 ~ 13:00</li>
+                                <li id="location">남산타워 왕돈까스</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177142340486434836/image.png?ex=65716e3c&is=655ef93c&hm=25f4b65804233086cac1d6112a3953891ff45264922c6fa9e55f577a342d0f34&=">
+                        </div>
+                    </div>
+                    <div id="schedule">   
+                        <li id="order">2</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>13:00 ~ 16:00</li>
+                                <li id="location">남산타워</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177146332411084840/image.png?ex=657171f3&is=655efcf3&hm=90c32388e3a7aa5a5d62b515305de9384a584af38a1555b3fe65a56a321b5439&=">
+                        </div>
+                    </div>
+                    <div id="schedule">   
+                        <li id="order">3</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>16:00 ~ 18:00</li>
+                                <li id="location">스타벅스</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177149347067080835/image.png?ex=657174c2&is=655effc2&hm=e492f1e6ccedec3d4b14c6fcb618109bf7bc27dacfd9d1b5435fc74dd6dd2988&=">
+                        </div>
+                    </div>
+                    <div id="schedule">   
+                        <li id="order">4</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>18:00 ~ 20:00</li>
+                                <li id="location">명륜진사갈비</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177149704576958496/image.png?ex=65717517&is=655f0017&hm=ee174c07624a454d97bf96480ca2fda3d9a98d9f438a59e5244aa21606adbb7b&=">
+                        </div>
+                    </div>
+                    <div id="schedule">   
+                        <li id="order">5</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>20:00~</li>
+                                <li id="location">라마다호텔</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177149998547341312/image.png?ex=6571755e&is=655f005e&hm=b6e4a58f1cf7e2e79c8f9e5fdac54e19fbd6252a8cb96ebc16d106252bc38505&=">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="day">    
+                    <li id="nthDay">2일차</li> 
+                    <div id="schedule">   
+                        <li id="order">1</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>~11:00</li>
+                                <li id="location">라마다호텔</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177149998547341312/image.png?ex=6571755e&is=655f005e&hm=b6e4a58f1cf7e2e79c8f9e5fdac54e19fbd6252a8cb96ebc16d106252bc38505&=">
+                        </div>
+                    </div>
+                    <div id="schedule">
+                        <li id="order">2</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>11:00 ~ 13:00</li>
+                                <li id="location">남산타워 왕돈까스</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177142340486434836/image.png?ex=65716e3c&is=655ef93c&hm=25f4b65804233086cac1d6112a3953891ff45264922c6fa9e55f577a342d0f34&=">
+                        </div>
+                    </div>
+                    <div id="schedule">   
+                        <li id="order">3</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>13:00 ~ 16:00</li>
+                                <li id="location">남산타워</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177146332411084840/image.png?ex=657171f3&is=655efcf3&hm=90c32388e3a7aa5a5d62b515305de9384a584af38a1555b3fe65a56a321b5439&=">
+                        </div>
+                    </div>
+                    <div id="schedule">   
+                        <li id="order">4</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>16:00 ~ 18:00</li>
+                                <li id="location">스타벅스</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177149347067080835/image.png?ex=657174c2&is=655effc2&hm=e492f1e6ccedec3d4b14c6fcb618109bf7bc27dacfd9d1b5435fc74dd6dd2988&=">
+                        </div>
+                    </div>
+                    <div id="schedule">   
+                        <li id="order">5</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>18:00 ~ 20:00</li>
+                                <li id="location">명륜진사갈비</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177149704576958496/image.png?ex=65717517&is=655f0017&hm=ee174c07624a454d97bf96480ca2fda3d9a98d9f438a59e5244aa21606adbb7b&=">
+                        </div>
+                    </div>
+                    <div id="schedule">   
+                        <li id="order">6</li>
+                        <div id="scheduleContent">   
+                            <div style="width:150px;">                
+                                <li>20:00~</li>
+                                <li id="location">라마다호텔</li>
+                            </div>
+                            <img src="https://media.discordapp.net/attachments/1173898314333311017/1177149998547341312/image.png?ex=6571755e&is=655f005e&hm=b6e4a58f1cf7e2e79c8f9e5fdac54e19fbd6252a8cb96ebc16d106252bc38505&=">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </article>
+    </main>
+   
+</body>
+
+</html>

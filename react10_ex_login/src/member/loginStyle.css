@@ -1,0 +1,10 @@
+.loginFormCenter{
+    width:400px;
+    margin:100px auto;
+
+}
+.errorMessage{
+    height:20px;
+    color:#f00;
+    font-size: 14px;
+}

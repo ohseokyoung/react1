@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--CDN으로 react 링크 걸기-->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- CDN으로 babel 링크 걸기 : jsx타입을 감지하여 실시간 반응 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    
+    <script type="text/babel">
+        //클래스 생성하기
+        class Car{
+            //생성자 메소드
+            constructor(name){
+                this.company = name; //company전역변수에 name값을 대입
+            }
+            //메소드생성(반환형지정하지 않음), 함수
+            present(){
+                return "<p>나의 차는 "+ this.company + "에서 제조하였습니다.</p>";
+            }
+
+            showCar(){// this만 붙이면 하위 상위 호출( java에선 x)
+                return this.show();
+            }
+        }
+
+        //클래스 사용하기
+        const myCar = new Car("현대자동차");
+
+        document.write(myCar.present());
+
+        //클래스의 상속 ------------------------------
+        class Model extends Car{
+            constructor(name, modelName){
+                super(name);//상위 클래스의 생성자 호출방법
+                this.model = modelName;
+            };
+            show(){
+                //상위클래스의 함수를 하위클래스에서 호출(this.메소드명)
+                return "<div>" + this.present() + "모델은 "+ this.model+ "입니다. </div>";
+            }
+        }
+
+        const myCar2 = new Model("기아자동차", "쏘렌토");
+        document.write(myCar2.show());
+        document.write(myCar2.showCar());
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--CDN으로 react 링크 걸기-->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- CDN으로 babel 링크 걸기 : jsx타입을 감지하여 실시간 반응 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <h1>CDN방식으로 react사용하기 </h1>
+    <!-- 화면의 내용을 표시할 곳 -->
+    <div id="my_react"></div>
+
+    <!-- react 코드 -->
+    <script type="text/babel"> /*text/javascript , text/babel(실시간반응)*/
+        function HelloReact(){
+            return <p>
+                        <b>jsx(javascript xml) 방식</b>으로 표시가 가능하다.
+                    </p>;
+        }
+        //                  컴포넌트, 출력될 곳
+        ReactDOM.render(<HelloReact/>, document.getElementById("my_react"));
+    </script>
+</body>
+</html>
